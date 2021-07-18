@@ -8,3 +8,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "MyJniStudyProject"
 include ':app'
+include ':mynativelib'
