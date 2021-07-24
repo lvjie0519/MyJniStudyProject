@@ -29,7 +29,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickJniFuncTest(View view) {
-        String result = new NativeLib().stringFromJNI();
+        NativeLib nativeLib = new NativeLib();
+        String result = nativeLib.stringFromJNI();
+        result = result+"  "+nativeLib.addString("1", "2");
+
         this.mTvShowInfo.setText(result);
+
     }
 }

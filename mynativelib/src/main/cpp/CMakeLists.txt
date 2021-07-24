@@ -3,11 +3,21 @@
 
 # Sets the minimum version of CMake required to build the native library.
 # 设置cmake构造本库需要的最低版本
-cmake_minimum_required(VERSION 3.10.2)
+cmake_minimum_required(VERSION 3.6.0)
 
 # Declares and names the project.
 
 project("mynativelib")
+
+#打开cmake输出日志
+set(CMAKE_VERBOSE_MAKEFILE on)
+
+# 设置源码路径
+set(CPP_SOURCE_SRC  ${CMAKE_CURRENT_SOURCE_DIR})
+set(UTILS_SOURCE_SRC  ${CPP_SOURCE_SRC}/utils)
+
+message("CPP_SOURCE_SRC:${CPP_SOURCE_SRC}")
+message("UTILS_SOURCE_SRC:${UTILS_SOURCE_SRC}")
 
 # Creates and names a library, sets it as either STATIC
 # or SHARED, and provides the relative paths to its source code.
@@ -41,13 +51,18 @@ find_library( # Sets the name of the path variable.
               # you want CMake to locate.
               log )
 
+add_subdirectory(${UTILS_SOURCE_SRC})
+
 # Specifies libraries CMake should link to your target library. You
 # can link multiple libraries, such as libraries you define in this
 # build script, prebuilt third-party libraries, or system libraries.
 # 指定CMake连接到目标库中，可以链接多个库，如上面的native-lib库以及NDK中自带的log-lib库
-target_link_libraries( # Specifies the target library.
-                       mynativelib
+target_link_libraries(
+        # Specifies the target library.
+       mynativelib
 
-                       # Links the target library to the log library
-                       # included in the NDK.
-                       ${log-lib} )
+       # Links the target library to the log library
+       # included in the NDK.
+       ${log-lib}
+        utils
+)

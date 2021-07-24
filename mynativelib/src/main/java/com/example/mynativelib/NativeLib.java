@@ -16,4 +16,6 @@ public class NativeLib {
      * which is packaged with this application.
      */
     public native String stringFromJNI();
+
+    public native String addString(String str1, String str2);
 }
