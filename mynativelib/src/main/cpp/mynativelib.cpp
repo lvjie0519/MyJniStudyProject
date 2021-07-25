@@ -1,6 +1,7 @@
 #include <jni.h>
 #include <string>
 #include <assert.h>
+#include "utils/LogUtil.h"
 
 extern "C" JNIEXPORT jstring JNICALL
 Java_com_example_mynativelib_NativeLib_stringFromJNI(
@@ -56,7 +57,7 @@ jint JNI_OnLoad(JavaVM* vm, void* reserved){
     JNIEnv* env = NULL;
     jint result = -1;
 
-//    LOGI("Entering JNI_OnLoad\n");
+    LOGI("lvjie", "Entering JNI_OnLoad");
     if (vm->GetEnv((void**) &env, JNI_VERSION_1_4) != JNI_OK)
         goto bail;
     assert(env != NULL);
