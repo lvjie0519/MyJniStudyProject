@@ -11,7 +11,7 @@
 
 class StringUtil {
 public:
-    std::string string_j2c(JNIEnv *env, jstring jstr);
+    static std::string string_j2c(JNIEnv *env, jstring jstr);
 };
 
 

@@ -2,6 +2,7 @@
 #include <string>
 #include <assert.h>
 #include "utils/LogUtil.h"
+#include "utils/StringUtil.h"
 
 extern "C" JNIEXPORT jstring JNICALL
 Java_com_example_mynativelib_NativeLib_stringFromJNI(
@@ -13,7 +14,7 @@ Java_com_example_mynativelib_NativeLib_stringFromJNI(
 
 static jstring NativeLib_addStringNative(JNIEnv* env, jobject thiz, jstring str1, jstring str2){
 
-    std::string result = "hello jni";
+    std::string result = StringUtil::string_j2c(env, str1)+StringUtil::string_j2c(env, str2);
     return env->NewStringUTF(result.c_str());
 }
 
