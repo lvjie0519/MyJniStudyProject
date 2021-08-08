@@ -24,18 +24,29 @@ FuncStudy & FuncStudy::operator = (const FuncStudy& funcStudy){
 }
 
 /**
- *
+ * 此种传参，会引起创建一个新的对象
  * @param funcStudy
  */
 void test1(FuncStudy funcStudy){
     funcStudy.pub_value = 100;
 }
 
+/**
+ * 此种传参，不会引起创建一个新的对象
+ * @param funcStudy
+ */
+void test2(FuncStudy &funcStudy){
+    funcStudy.pub_value = 100;
+}
+
 void FuncStudy::testFunc() {
     FuncStudy funcStudy1;           // 调用无参构造
-    funcStudy1.pub_value = 1;
-    test1(funcStudy1);              // 会调用一次拷贝构造，test1 中修改的值并不会影响funcStudy1的数据
-    LOGI(TAG, "testFunc pub_value: %d", funcStudy1.pub_value);  // testFunc pub_value: 1
+//    funcStudy1.pub_value = 1;
+//    test1(funcStudy1);              // 会调用一次拷贝构造，test1 中修改的值并不会影响funcStudy1的数据
+//    LOGI(TAG, "testFunc pub_value: %d", funcStudy1.pub_value);  // testFunc pub_value: 1
+
+    test2(funcStudy1);              // 不会调用一次拷贝构造，test1 中修改的值并不会影响funcStudy1的数据
+    LOGI(TAG, "testFunc pub_value: %d", funcStudy1.pub_value);  // testFunc pub_value: 100
 }
 
 
