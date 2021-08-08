@@ -36,4 +36,9 @@ public class MainActivity extends AppCompatActivity {
         this.mTvShowInfo.setText(result);
 
     }
+
+    public void onClickCStudy(View view) {
+        NativeLib nativeLib = new NativeLib();
+        nativeLib.testCStudy("");
+    }
 }

@@ -3,6 +3,7 @@
 #include <assert.h>
 #include "utils/LogUtil.h"
 #include "utils/StringUtil.h"
+#include "cstudy/FuncStudy.h"
 
 extern "C" JNIEXPORT jstring JNICALL
 Java_com_example_mynativelib_NativeLib_stringFromJNI(
@@ -18,6 +19,10 @@ static jstring NativeLib_addStringNative(JNIEnv* env, jobject thiz, jstring str1
     return env->NewStringUTF(result.c_str());
 }
 
+static void NativeLib_testCStudyNative(JNIEnv* env, jobject thiz, jstring str1){
+    FuncStudy::testFunc();
+}
+
 // 注册方法的方式让java层与jni层建立对应关系
 static const char *NativeLibClass = "com/example/mynativelib/NativeLib";
 static JNINativeMethod methods[] = {
@@ -25,6 +30,11 @@ static JNINativeMethod methods[] = {
                 "addString",
                 "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;",
                 (void *)NativeLib_addStringNative
+        },
+        {
+                "testCStudy",
+                "(Ljava/lang/String;)V",
+                (void *)NativeLib_testCStudyNative
         }
 };
 

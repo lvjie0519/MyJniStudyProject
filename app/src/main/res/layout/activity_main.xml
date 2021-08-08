@@ -21,6 +21,13 @@
         android:onClick="onClickJniFuncTest"
         />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="c++ 学习"
+        android:onClick="onClickCStudy"
+        />
+
     <TextView
         android:id="@+id/tv_show_info"
         android:layout_width="wrap_content"

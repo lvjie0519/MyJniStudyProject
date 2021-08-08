@@ -15,6 +15,7 @@ set(CMAKE_VERBOSE_MAKEFILE on)
 # 设置源码路径
 set(CPP_SOURCE_SRC  ${CMAKE_CURRENT_SOURCE_DIR})
 set(UTILS_SOURCE_SRC  ${CPP_SOURCE_SRC}/utils)
+set(CSTUDY_SOURCE_SRC  ${CPP_SOURCE_SRC}/cstudy)
 
 message("CPP_SOURCE_SRC:${CPP_SOURCE_SRC}")
 message("UTILS_SOURCE_SRC:${UTILS_SOURCE_SRC}")
@@ -51,7 +52,12 @@ find_library( # Sets the name of the path variable.
               # you want CMake to locate.
               log )
 
+# include_directories(header-dir) 是一个全局包含，向下传递。
+# 就是说如果某个目录的 CMakeLists.txt 中使用了该语句，其下所有的子目录默认也包含了header-dir 目录。
+include_directories(${CPP_SOURCE_SRC})
+
 add_subdirectory(${UTILS_SOURCE_SRC})
+add_subdirectory(${CSTUDY_SOURCE_SRC})
 
 # Specifies libraries CMake should link to your target library. You
 # can link multiple libraries, such as libraries you define in this
@@ -65,4 +71,5 @@ target_link_libraries(
        # included in the NDK.
        ${log-lib}
         utils
+        cstudy
 )

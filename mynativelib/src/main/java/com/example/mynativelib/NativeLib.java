@@ -3,9 +3,9 @@ package com.example.mynativelib;
 public class NativeLib {
 
     // Used to load the 'mynativelib' library on application startup.
-//    static {
-//        System.loadLibrary("mynativelib");
-//    }
+    static {
+        System.loadLibrary("mynativelib");
+    }
 
     public static void loadSoFile(){
         System.loadLibrary("mynativelib");
@@ -18,4 +18,6 @@ public class NativeLib {
     public native String stringFromJNI();
 
     public native String addString(String str1, String str2);
+
+    public native void testCStudy(String str1);
 }
