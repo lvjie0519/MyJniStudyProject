@@ -5,6 +5,8 @@
 #include "utils/StringUtil.h"
 #include "cstudy/FuncStudy.h"
 
+#define NATIVE_METHOD(name, signature) {#name, signature, (void *)NativeLib_##name}
+
 extern "C" JNIEXPORT jstring JNICALL
 Java_com_example_mynativelib_NativeLib_stringFromJNI(
         JNIEnv* env,
@@ -19,7 +21,7 @@ static jstring NativeLib_addStringNative(JNIEnv* env, jobject thiz, jstring str1
     return env->NewStringUTF(result.c_str());
 }
 
-static void NativeLib_testCStudyNative(JNIEnv* env, jobject thiz, jstring str1){
+static void NativeLib_testCStudy(JNIEnv* env, jobject thiz, jstring str1){
     FuncStudy::testFunc();
 }
 
@@ -31,11 +33,8 @@ static JNINativeMethod methods[] = {
                 "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;",
                 (void *)NativeLib_addStringNative
         },
-        {
-                "testCStudy",
-                "(Ljava/lang/String;)V",
-                (void *)NativeLib_testCStudyNative
-        }
+
+        NATIVE_METHOD(testCStudy, "(Ljava/lang/String;)V"),
 };
 
 static int registerNativeMethods(JNIEnv* env, const char* className,
