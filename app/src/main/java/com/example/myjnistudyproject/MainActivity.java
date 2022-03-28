@@ -3,13 +3,16 @@ package com.example.myjnistudyproject;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.example.mynativelib.NativeLib;
+import com.example.mynativelib.Student;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = "MainActivity";
     private TextView mTvShowInfo;
 
     @Override
@@ -38,7 +41,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickCStudy(View view) {
-        NativeLib nativeLib = new NativeLib();
-        nativeLib.testCStudy("");
+//        NativeLib nativeLib = new NativeLib();
+//        nativeLib.testCStudy("");
+
+        testStudent();
+    }
+
+    private void testStudent() {
+        Student student = new Student();
+        student.mAge = 10;
+        student.setmName("lvjie");
+        Log.i(TAG, student.toString());
+
+        student.sayHello();
+        Log.i(TAG, student.toString());
     }
 }

@@ -4,6 +4,7 @@
 #include "utils/LogUtil.h"
 #include "utils/StringUtil.h"
 #include "cstudy/FuncStudy.h"
+#include "StudentNative.h"
 
 #define NATIVE_METHOD(name, signature) {#name, signature, (void *)NativeLib_##name}
 
@@ -73,6 +74,9 @@ jint JNI_OnLoad(JavaVM* vm, void* reserved){
     assert(env != NULL);
 
     if (!registerNatives(env))
+        goto bail;
+
+    if (!initStudentNative(vm, env))
         goto bail;
 
     /* success -- return valid version number */
