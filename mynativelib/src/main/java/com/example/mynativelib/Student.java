@@ -29,6 +29,7 @@ public class Student {
                 '}';
     }
 
-    public native void sayHello();
+    public native void callJavaValue();
 
+    public native void callJavaMethod();
 }

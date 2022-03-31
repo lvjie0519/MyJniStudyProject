@@ -53,7 +53,10 @@ public class MainActivity extends AppCompatActivity {
         student.setmName("lvjie");
         Log.i(TAG, student.toString());
 
-        student.sayHello();
+        student.callJavaValue();
         Log.i(TAG, student.toString());
+
+        Log.i(TAG, "will callJavaMethod");
+        student.callJavaMethod();
     }
 }
