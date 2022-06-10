@@ -29,6 +29,10 @@ public class Student {
                 '}';
     }
 
+    private boolean launchApp(String packageName, int reason, String extraData) {
+        return true;
+    }
+
     public native void callJavaValue();
 
     public native void callJavaMethod();
