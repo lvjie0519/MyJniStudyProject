@@ -17,6 +17,7 @@ android {
         externalNativeBuild {
             cmake {
                 cppFlags "-std=c++11"
+                arguments "-DENABLE_DEMO01=1", "-DENABLE_DEMO02=0"
             }
         }
     }
@@ -46,4 +47,6 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.24'
 }

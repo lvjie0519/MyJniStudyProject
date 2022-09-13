@@ -20,6 +20,20 @@ set(CSTUDY_SOURCE_SRC  ${CPP_SOURCE_SRC}/cstudy)
 message("CPP_SOURCE_SRC:${CPP_SOURCE_SRC}")
 message("UTILS_SOURCE_SRC:${UTILS_SOURCE_SRC}")
 
+# DENABLE_DEMO01模块编译选项
+MESSAGE(WARNING "ENABLE_DEMO01 =${DENABLE_DEMO01}")
+message("ENABLE_DEMO01:${ENABLE_DEMO01}")
+if (ENABLE_DEMO01)
+    add_definitions(-DENABLE_DEMO01=1)
+endif()
+
+# DENABLE_DEMO02模块编译选项
+#MESSAGE(WARNING "ENABLE_DEMO02 =${DENABLE_DEMO02}")
+message("ENABLE_DEMO02:${ENABLE_DEMO02}")
+if (ENABLE_DEMO02)
+    add_definitions(-DENABLE_DEMO02=1)
+endif()
+
 # Creates and names a library, sets it as either STATIC
 # or SHARED, and provides the relative paths to its source code.
 # You can define multiple libraries, and CMake builds them for you.
