@@ -33,7 +33,13 @@ public class Student {
         return true;
     }
 
+    public void setOnClickListener(OnClickListener listener){
+        setOnClickListenerNative(listener);
+    }
+
     public native void callJavaValue();
 
     public native void callJavaMethod();
+
+    public native void setOnClickListenerNative(OnClickListener listener);
 }

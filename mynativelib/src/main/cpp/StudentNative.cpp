@@ -5,11 +5,15 @@
 #include <string>
 #include "StudentNative.h"
 #include "utils/LogUtil.h"
+#include "jnihelper/ScopedGlobalRef.h"
 #define TAG "StudentNative"
 
 #define NATIVE_METHOD(name, signature) {#name, signature, (void *)Student_##name}
 
 #define CLASS_NAME_Student                          "com/example/mynativelib/Student"
+
+static JavaVM *sJvm = nullptr;
+static jint sJvmVersion = -1;
 
 void JNICALL Student_callJavaValue(JNIEnv *env, jobject obj) {
     // 直接过去java 层的变量
@@ -115,9 +119,41 @@ int registerNativeMethods(JNIEnv* env, const char* className,
     return JNI_TRUE;
 }
 
+class NativeOnClickListener{
+public:
+    explicit NativeOnClickListener(JNIEnv *env, jobject object) : mRef(*sJvm, *env, object) {
+    }
+
+    void onClick(){
+        jnihelper::ScopedJniEnv envGuard(*sJvm, sJvmVersion);
+        if (!envGuard.valid()) {
+            return;
+        }
+        JNIEnv *env = envGuard.getEnv();
+//        env->CallVoidMethod(mRef.get(), sAuthCallbacks[NOTIFY_AUTH_SUCCESS].id, jmsg->get());
+    }
+
+private:
+    jnihelper::ScopedGlobalRef<jobject> mRef;
+};
+
+void Student_setOnClickListenerNative(JNIEnv *env, jobject obj, jobject jlistener) {
+    LOGI(TAG, "Student_setOnClickListenerNative");
+    if (jlistener == nullptr) {
+        LOGI(TAG, "Student_setOnClickListenerNative  jlistener is null");
+        return;
+    }
+
+    std::shared_ptr<NativeOnClickListener> listener = std::make_shared<NativeOnClickListener>(env,jlistener);
+    if (listener != nullptr) {
+        listener->onClick();
+    }
+}
+
 static JNINativeMethod methods[] = {
         NATIVE_METHOD(callJavaValue, "()V"),
         NATIVE_METHOD(callJavaMethod, "()V"),
+        NATIVE_METHOD(setOnClickListenerNative, "(Jjava/lang/Object;)V"),
 };
 
 bool initStudentNative(JavaVM *vm, JNIEnv *env) {
@@ -125,6 +161,9 @@ bool initStudentNative(JavaVM *vm, JNIEnv *env) {
         LOGE(TAG, "Invalid Arguments");
         return false;
     }
+
+    sJvm = vm;
+    sJvmVersion = env->GetVersion();
 
     if (!registerNativeMethods(env, CLASS_NAME_Student,methods,sizeof(methods) / sizeof(methods[0]))) {
         return JNI_FALSE;
