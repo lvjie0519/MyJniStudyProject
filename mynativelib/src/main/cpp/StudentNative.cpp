@@ -153,7 +153,7 @@ void Student_setOnClickListenerNative(JNIEnv *env, jobject obj, jobject jlistene
 static JNINativeMethod methods[] = {
         NATIVE_METHOD(callJavaValue, "()V"),
         NATIVE_METHOD(callJavaMethod, "()V"),
-        NATIVE_METHOD(setOnClickListenerNative, "(Jjava/lang/Object;)V"),
+        NATIVE_METHOD(setOnClickListenerNative, "(Lcom/example/mynativelib/OnClickListener;)V"),
 };
 
 bool initStudentNative(JavaVM *vm, JNIEnv *env) {
