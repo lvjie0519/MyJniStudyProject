@@ -17,7 +17,9 @@ add_library( # Sets the name of the library.
              STATIC
 
              # Provides a relative path to your source file(s).
-             FuncStudy.cpp )
+             FuncStudy.cpp
+             ThreadStudy.cpp
+        )
 
 find_library( # Sets the name of the path variable.
               log-lib
@@ -29,6 +31,7 @@ find_library( # Sets the name of the path variable.
 # 指定CMake连接到目标库中，可以链接多个库，如上面的native-lib库以及NDK中自带的log-lib库
 target_link_libraries( # Specifies the target library.
         cstudy
+        utils
 
        # Links the target library to the log library
        # included in the NDK.

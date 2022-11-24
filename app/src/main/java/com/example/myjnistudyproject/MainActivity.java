@@ -41,10 +41,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickCStudy(View view) {
-//        NativeLib nativeLib = new NativeLib();
-//        nativeLib.testCStudy("");
+        NativeLib nativeLib = new NativeLib();
+        nativeLib.testCStudy("");
 
-        testStudent();
+//        testStudent();
     }
 
     private void testStudent() {

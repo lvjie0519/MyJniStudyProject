@@ -5,6 +5,7 @@
 #include "utils/StringUtil.h"
 #include "cstudy/FuncStudy.h"
 #include "StudentNative.h"
+#include "cstudy/ThreadStudy.h"
 
 #define NATIVE_METHOD(name, signature) {#name, signature, (void *)NativeLib_##name}
 
@@ -23,7 +24,8 @@ static jstring NativeLib_addStringNative(JNIEnv* env, jobject thiz, jstring str1
 }
 
 static void NativeLib_testCStudy(JNIEnv* env, jobject thiz, jstring str1){
-    FuncStudy::testFunc();
+//    FuncStudy::testFunc();
+    ThreadStudy::testThread();
 }
 
 // 注册方法的方式让java层与jni层建立对应关系
